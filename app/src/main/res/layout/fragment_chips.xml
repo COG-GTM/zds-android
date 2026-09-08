@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chipList"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    app:divider="@drawable/divider"
+    app:showDividers="middle">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selectable (single selection)"
+        android:textAppearance="?attr/textAppearanceTitleSmall"
+        tools:ignore="HardcodedText" />
+
+    <com.zebra.zds.ZdsChipGroup
+        android:id="@+id/selectableGroup"
+        style="@style/Zds.ChipGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/chipSmall"
+            style="@style/Zds.Chip.Selectable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Small"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/chipMedium"
+            style="@style/Zds.Chip.Selectable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medium"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/chipLarge"
+            style="@style/Zds.Chip.Selectable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Large"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/chipXLarge"
+            style="@style/Zds.Chip.Selectable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="X-Large"
+            tools:ignore="HardcodedText" />
+    </com.zebra.zds.ZdsChipGroup>
+
+    <TextView
+        android:id="@+id/selectableResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBodySmall"
+        tools:text="Selected: Small" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selectable (sharp)"
+        android:textAppearance="?attr/textAppearanceTitleSmall"
+        tools:ignore="HardcodedText" />
+
+    <com.zebra.zds.ZdsChipGroup
+        android:id="@+id/selectableSharpGroup"
+        style="@style/Zds.ChipGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:singleSelection="true">
+
+        <com.zebra.zds.ZdsChip
+            style="@style/Zds.Chip.Selectable.Sharp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Today"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            style="@style/Zds.Chip.Selectable.Sharp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This week"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            style="@style/Zds.Chip.Selectable.Sharp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This month"
+            tools:ignore="HardcodedText" />
+    </com.zebra.zds.ZdsChipGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filter (multi selection)"
+        android:textAppearance="?attr/textAppearanceTitleSmall"
+        tools:ignore="HardcodedText" />
+
+    <com.zebra.zds.ZdsChipGroup
+        android:id="@+id/filterGroup"
+        style="@style/Zds.ChipGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/chipInStock"
+            style="@style/Zds.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="In stock"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/chipOnSale"
+            style="@style/Zds.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="On sale"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/chipRugged"
+            style="@style/Zds.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Rugged"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/chipWireless"
+            style="@style/Zds.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wireless"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/chipDisabledFilter"
+            style="@style/Zds.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Discontinued"
+            tools:ignore="HardcodedText" />
+    </com.zebra.zds.ZdsChipGroup>
+
+    <TextView
+        android:id="@+id/filterResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBodySmall"
+        tools:text="Active filters: In stock, Rugged" />
+
+    <com.zebra.zds.ZdsButton
+        android:id="@+id/resetFilters"
+        style="@style/Zds.Button.Outline.Subtle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset filters"
+        android:theme="@style/Zds.Button.Outline.Subtle"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filter (sharp)"
+        android:textAppearance="?attr/textAppearanceTitleSmall"
+        tools:ignore="HardcodedText" />
+
+    <com.zebra.zds.ZdsChipGroup
+        style="@style/Zds.ChipGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.zebra.zds.ZdsChip
+            style="@style/Zds.Chip.Filter.Sharp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Scanners"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            style="@style/Zds.Chip.Filter.Sharp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Printers"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            style="@style/Zds.Chip.Filter.Sharp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tablets"
+            tools:ignore="HardcodedText" />
+    </com.zebra.zds.ZdsChipGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Plain (with icon)"
+        android:textAppearance="?attr/textAppearanceTitleSmall"
+        tools:ignore="HardcodedText" />
+
+    <com.zebra.zds.ZdsChipGroup
+        style="@style/Zds.ChipGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.zebra.zds.ZdsChip
+            style="@style/Zds.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Label"
+            app:chipIcon="@drawable/ic_star_round"
+            app:chipIconVisible="true"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            style="@style/Zds.Chip.Sharp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Label"
+            app:chipIcon="@drawable/ic_star_sharp"
+            app:chipIconVisible="true"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            style="@style/Zds.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Disabled"
+            tools:ignore="HardcodedText" />
+    </com.zebra.zds.ZdsChipGroup>
+</androidx.appcompat.widget.LinearLayoutCompat>

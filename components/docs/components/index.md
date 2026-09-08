@@ -22,6 +22,7 @@
 16. [ZdsBanner](#ZdsBanner)
 17. [ZdsSystemBanner](#ZdsSystemBanner)
 18. [ZdsSelectInput](#ZdsSelectInput)
+19. [ZdsChip and ZdsChipGroup](#ZdsChip)
 
 <a name="ZdsButton"></a>
 
@@ -1005,4 +1006,68 @@ items.add("Item 4");
 
 ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireContext(), R.layout.select_input_item, items);
 selectInput.getTextInputEditText().setAdapter(adapter);
+```
+
+<a name="ZdsChip"></a>
+
+## ZdsChip and ZdsChipGroup
+
+## Class:
+
+The class **com.zebra.zds.ZdsChip** is a subclass of<br>
+**com.google.android.material.chip.Chip**
+
+The class **com.zebra.zds.ZdsChipGroup** is a subclass of<br>
+**com.google.android.material.chip.ChipGroup**
+
+## Styles:
+
+- Zds.Chip (plain, non-checkable)
+- Zds.Chip.Sharp
+- Zds.Chip.Selectable (checkable, shows a check mark when selected; use inside a `ZdsChipGroup` with `app:singleSelection="true"` for single choice)
+- Zds.Chip.Selectable.Sharp
+- Zds.Chip.Filter (checkable, shows a check mark when selected and a close icon to remove the filter)
+- Zds.Chip.Filter.Sharp
+- Zds.ChipGroup
+
+## Example:
+
+```xml
+<com.zebra.zds.ZdsChipGroup
+    android:id="@+id/sizes"
+    style="@style/Zds.ChipGroup"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:selectionRequired="true"
+    app:singleSelection="true">
+
+    <com.zebra.zds.ZdsChip
+        android:id="@+id/small"
+        style="@style/Zds.Chip.Selectable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:text="Small" />
+
+    <com.zebra.zds.ZdsChip
+        android:id="@+id/large"
+        style="@style/Zds.Chip.Selectable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Large" />
+</com.zebra.zds.ZdsChipGroup>
+
+<com.zebra.zds.ZdsChip
+    android:id="@+id/filter"
+    style="@style/Zds.Chip.Filter"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:checked="true"
+    android:text="In stock" />
+```
+
+```java
+ZdsChip filter = getView().findViewById(R.id.filter);
+filter.setOnCheckedChangeListener((chip, isChecked) -> applyFilter(isChecked));
+filter.setOnCloseIconClickListener(v -> filter.setVisibility(View.GONE));
 ```
