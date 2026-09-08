@@ -1069,5 +1069,8 @@ The class **com.zebra.zds.ZdsChipGroup** is a subclass of<br>
 ```java
 ZdsChip filter = getView().findViewById(R.id.filter);
 filter.setOnCheckedChangeListener((chip, isChecked) -> applyFilter(isChecked));
-filter.setOnCloseIconClickListener(v -> filter.setVisibility(View.GONE));
+filter.setOnCloseIconClickListener(v -> {
+    filter.setChecked(false);
+    filter.setVisibility(View.GONE);
+});
 ```

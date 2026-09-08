@@ -19,6 +19,10 @@ import java.util.List;
 
 public class ChipsFragment extends Fragment {
 
+    private static final String KEY_REMOVED_FILTERS = "removedFilters";
+
+    private final List<Integer> removedFilterIds = new ArrayList<>();
+
     public ChipsFragment() {
         // Required empty public constructor
     }
@@ -42,9 +46,24 @@ public class ChipsFragment extends Fragment {
         ChipGroup filterGroup = view.findViewById(R.id.filterGroup);
         TextView filterResult = view.findViewById(R.id.filterResult);
         filterGroup.setOnCheckedStateChangeListener((group, checkedIds) -> updateFilters(group, filterResult));
+        if (savedInstanceState != null) {
+            int[] removed = savedInstanceState.getIntArray(KEY_REMOVED_FILTERS);
+            if (removed != null) {
+                for (int id : removed) {
+                    if (!removedFilterIds.contains(id)) {
+                        removedFilterIds.add(id);
+                    }
+                }
+            }
+        }
         for (int i = 0; i < filterGroup.getChildCount(); i++) {
             ZdsChip chip = (ZdsChip) filterGroup.getChildAt(i);
+            if (removedFilterIds.contains(chip.getId())) {
+                chip.setChecked(false);
+                chip.setVisibility(View.GONE);
+            }
             chip.setOnCloseIconClickListener(v -> {
+                removedFilterIds.add(chip.getId());
                 chip.setChecked(false);
                 chip.setVisibility(View.GONE);
                 updateFilters(filterGroup, filterResult);
@@ -53,6 +72,7 @@ public class ChipsFragment extends Fragment {
         updateFilters(filterGroup, filterResult);
 
         view.findViewById(R.id.resetFilters).setOnClickListener(v -> {
+            removedFilterIds.clear();
             for (int i = 0; i < filterGroup.getChildCount(); i++) {
                 ZdsChip chip = (ZdsChip) filterGroup.getChildAt(i);
                 chip.setVisibility(View.VISIBLE);
@@ -60,6 +80,16 @@ public class ChipsFragment extends Fragment {
             }
             updateFilters(filterGroup, filterResult);
         });
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        int[] removed = new int[removedFilterIds.size()];
+        for (int i = 0; i < removed.length; i++) {
+            removed[i] = removedFilterIds.get(i);
+        }
+        outState.putIntArray(KEY_REMOVED_FILTERS, removed);
     }
 
     private void updateSelectable(ChipGroup group, TextView result) {
