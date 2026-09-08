@@ -8,4 +8,7 @@ open class ZdsChip @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = com.google.android.material.R.attr.chipStyle
-) : Chip(context, attrs, defStyleAttr)
+) : Chip(context, attrs, defStyleAttr) {
+
+    override fun performCloseIconClick(): Boolean = isEnabled && super.performCloseIconClick()
+}
