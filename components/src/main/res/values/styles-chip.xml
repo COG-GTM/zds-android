@@ -28,7 +28,7 @@
     <style name="Zds.Chip.Filter" parent="Zds.Chip">
         <item name="checkedIconVisible">true</item>
         <item name="checkedIcon">@drawable/ic_check_mark_round</item>
-        <item name="checkedIconTint">@color/zebra_blue_enabled</item>
+        <item name="checkedIconTint">@color/zebra_blue_pressed</item>
         <item name="chipIconSize">18dp</item>
     </style>
 
