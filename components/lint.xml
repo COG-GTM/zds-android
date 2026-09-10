@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!-- The generated icon set (deps(automated) commits) contains ~2.7k pathData values without a leading
+         zero (e.g. -.005). Reported as a warning until the icon pipeline emits normalized paths. -->
+    <issue id="InvalidVectorPath" severity="warning" />
+</lint>
