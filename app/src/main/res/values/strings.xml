@@ -25,4 +25,5 @@
     <string name="action_snackbar">Snackbar</string>
     <string name="action_banner">Banner</string>
     <string name="action_select_input">Select input</string>
+    <string name="action_chip">Chips</string>
 </resources>
