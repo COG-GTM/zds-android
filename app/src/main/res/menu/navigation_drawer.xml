@@ -52,6 +52,11 @@
             android:title="@string/action_checkbox"/>
 
         <item
+            android:id="@+id/chipFragment"
+            android:icon="@drawable/ic_star_round"
+            android:title="@string/action_chips"/>
+
+        <item
             android:id="@+id/progressIndicatorsFragment"
             android:icon="@drawable/ic_star_round"
             android:title="@string/action_progress_indicators"/>

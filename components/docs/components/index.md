@@ -11,17 +11,18 @@
 5. [ZdsSwitch](#ZdsSwitch)
 6. [ZdsRadioButton](#ZdsRadioButton)
 7. [ZdsCheckBox](#ZdsCheckBox)
-8. [ZdsLinearProgressIndicator](#ZdsLinearProgressIndicator)
-9. [ZdsCircularProgressIndicator](#ZdsCircularProgressIndicator)
-10. [ZdsToolbar](#ZdsToolbar)
-11. [ZdsTabLayout and ZdsTabItem](#ZdsTabLayout)
-12. [ZdsListItem](#ZdsListItem)
-13. [ZdsDialog](#ZdsDialog)
-14. [Dropdown](#Dropdown)
-15. [ZdsSearchView](#ZdsSearchView)
-16. [ZdsBanner](#ZdsBanner)
-17. [ZdsSystemBanner](#ZdsSystemBanner)
-18. [ZdsSelectInput](#ZdsSelectInput)
+8. [ZdsChip and ZdsChipGroup](#ZdsChip)
+9. [ZdsLinearProgressIndicator](#ZdsLinearProgressIndicator)
+10. [ZdsCircularProgressIndicator](#ZdsCircularProgressIndicator)
+11. [ZdsToolbar](#ZdsToolbar)
+12. [ZdsTabLayout and ZdsTabItem](#ZdsTabLayout)
+13. [ZdsListItem](#ZdsListItem)
+14. [ZdsDialog](#ZdsDialog)
+15. [Dropdown](#Dropdown)
+16. [ZdsSearchView](#ZdsSearchView)
+17. [ZdsBanner](#ZdsBanner)
+18. [ZdsSystemBanner](#ZdsSystemBanner)
+19. [ZdsSelectInput](#ZdsSelectInput)
 
 <a name="ZdsButton"></a>
 
@@ -303,6 +304,46 @@ The class **com.zebra.zds.ZdsCheckBox** is a subclass of<br>
 <com.zebra.zds.ZdsCheckBox android:id="@+id/option1" android:layout_width="wrap_content"
     android:layout_height="wrap_content" app:checkedState="indeterminate"
     style="@style/Zds.CheckBox" android:theme="@style/Zds.CheckBox" />
+```
+
+<a name="ZdsChip"></a>
+
+## ZdsChip
+
+## Class:
+
+The class **com.zebra.zds.ZdsChip** is a subclass of<br>
+**com.google.android.material.chip.Chip**
+
+The class **com.zebra.zds.ZdsChipGroup** is a subclass of<br>
+**com.google.android.material.chip.ChipGroup**
+
+## Styles:
+
+- Zds.Chip
+- Zds.Chip.Sharp
+- Zds.Chip.Filter
+- Zds.Chip.Filter.Sharp
+- Zds.Chip.Input
+- Zds.Chip.Input.Sharp
+- Zds.ChipGroup
+
+Zds.Chip is an assist chip. Zds.Chip.Filter shows a check mark when selected and requires
+`android:checkable="true"`. Zds.Chip.Input shows a close icon; use `setOnCloseIconClickListener`
+to handle removal.
+
+## Example:
+
+```xml
+
+<com.zebra.zds.ZdsChipGroup android:id="@+id/filterChipGroup" style="@style/Zds.ChipGroup"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    app:singleSelection="true">
+
+    <com.zebra.zds.ZdsChip android:id="@+id/filterChip" style="@style/Zds.Chip.Filter"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:checkable="true" android:text="Label" />
+</com.zebra.zds.ZdsChipGroup>
 ```
 
 <a name="ZdsLinearProgressIndicator"></a>

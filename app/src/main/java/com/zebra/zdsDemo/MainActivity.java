@@ -110,6 +110,10 @@ public class MainActivity extends AppCompatActivity {
                     navController.navigate(R.id.checkboxFragment);
                     break;
 
+                case R.id.chipFragment:
+                    navController.navigate(R.id.chipFragment);
+                    break;
+
                 case R.id.progressIndicatorsFragment:
                     navController.navigate(R.id.progressIndicatorsFragment);
                     break;

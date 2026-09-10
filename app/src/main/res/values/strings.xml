@@ -12,6 +12,7 @@
     <string name="action_switch">Switch</string>
     <string name="action_radio">Radio Buttons</string>
     <string name="action_checkbox">Checkbox</string>
+    <string name="action_chips">Chips</string>
     <string name="action_progress_indicators">Progress Indicators</string>
     <string name="menu_action_favorite">Favorite</string>
     <string name="action_toolbar">Toolbar</string>
