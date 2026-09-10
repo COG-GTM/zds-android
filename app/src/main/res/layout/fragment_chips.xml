@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chipsLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:padding="16dp"
+    app:divider="@drawable/divider"
+    app:showDividers="middle">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selectable"
+        android:textAppearance="@style/TextAppearance.Zds.LabelLarge"
+        tools:ignore="HardcodedText" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/selectableChipGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/selectableToday"
+            style="@style/Zds.Chip.Selectable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Today"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/selectableWeek"
+            style="@style/Zds.Chip.Selectable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This week"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/selectableMonth"
+            style="@style/Zds.Chip.Selectable.Sharp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This month"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/selectableDisabled"
+            style="@style/Zds.Chip.Selectable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Custom range"
+            tools:ignore="HardcodedText" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filter"
+        android:textAppearance="@style/TextAppearance.Zds.LabelLarge"
+        tools:ignore="HardcodedText" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/filterChipGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/filterInStock"
+            style="@style/Zds.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="In stock"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/filterDamaged"
+            style="@style/Zds.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Damaged"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/filterReturned"
+            style="@style/Zds.Chip.Filter.Sharp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Returned"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/filterDisabled"
+            style="@style/Zds.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Archived"
+            tools:ignore="HardcodedText" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/chipSelection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.Zds.BodySmall"
+        tools:text="Filters: In stock" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
