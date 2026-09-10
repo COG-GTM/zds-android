@@ -60,10 +60,10 @@ publishing {
     repositories {
         maven {
             credentials {
-                username = project.property('mavenUsername')
-                password = project.property('mavenPassword')
+                username = project.findProperty('mavenUsername') ?: ''
+                password = project.findProperty('mavenPassword') ?: ''
             }
-            url = project.property('zds-android-maven') + project.property('publish')
+            url = (project.findProperty('zds-android-maven') ?: '') + (project.findProperty('publish') ?: '')
         }
     }
 }
