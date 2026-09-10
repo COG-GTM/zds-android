@@ -57,13 +57,30 @@ publishing {
         }
     }
 
+    // Publishing properties are only required when a publish task actually runs, so that
+    // assemble/lint/test can configure without Artifactory credentials.
+    def publishProperties = ['zds-android-maven', 'publish', 'mavenUsername', 'mavenPassword']
+            .collectEntries { [(it): project.findProperty(it)?.toString()] }
+    def missingPublishProperties = publishProperties.findAll { !it.value }.keySet()
+
     repositories {
         maven {
             credentials {
-                username = project.property('mavenUsername')
-                password = project.property('mavenPassword')
+                username = publishProperties['mavenUsername'] ?: ''
+                password = publishProperties['mavenPassword'] ?: ''
             }
-            url = project.property('zds-android-maven') + project.property('publish')
+            url = missingPublishProperties.isEmpty()
+                    ? publishProperties['zds-android-maven'] + publishProperties['publish']
+                    : 'https://invalid.invalid/missing-publish-properties'
+        }
+    }
+
+    tasks.withType(PublishToMavenRepository).configureEach {
+        doFirst {
+            if (!missingPublishProperties.isEmpty()) {
+                throw new GradleException(
+                        "Cannot publish: missing Gradle properties ${missingPublishProperties.join(', ')}")
+            }
         }
     }
 }
