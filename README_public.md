@@ -4,7 +4,7 @@ Zebra Design System components for Android.
 
 ## Setup
 
-This has been tested with `compileSdkVersion 34`. Other sdk versions may require additional work.
+This has been verified with `compileSdk 36` / `targetSdk 36` / `minSdk 21`. Other sdk versions may require additional work.
 
 1. Add Zebra Maven repository to `settings.gradle`:
 
