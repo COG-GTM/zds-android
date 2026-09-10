@@ -22,6 +22,7 @@
 16. [ZdsBanner](#ZdsBanner)
 17. [ZdsSystemBanner](#ZdsSystemBanner)
 18. [ZdsSelectInput](#ZdsSelectInput)
+19. [ZdsChip](#ZdsChip)
 
 <a name="ZdsButton"></a>
 
@@ -1005,4 +1006,42 @@ items.add("Item 4");
 
 ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireContext(), R.layout.select_input_item, items);
 selectInput.getTextInputEditText().setAdapter(adapter);
+```
+
+<a name="ZdsChip"></a>
+
+## ZdsChip
+
+### Class:
+
+**com.zebra.zds.ZdsChip** is a subclass of <br>
+**com.google.android.material.chip.Chip** <br>
+
+### Styles:
+
+- Zds.Chip.Selectable
+- Zds.Chip.Selectable.Sharp
+- Zds.Chip.Filter
+- Zds.Chip.Filter.Sharp
+
+The selectable variant toggles between an unselected and a selected state. The filter variant
+behaves the same way and additionally shows a check mark while selected. Place chips inside a
+**com.google.android.material.chip.ChipGroup** to get single or multi selection behaviour.
+
+### Example:
+
+```xml
+
+<com.google.android.material.chip.ChipGroup android:id="@+id/chipGroup"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <com.zebra.zds.ZdsChip android:id="@+id/chipInStock" style="@style/Zds.Chip.Filter"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="In stock" />
+</com.google.android.material.chip.ChipGroup>
+```
+
+```java
+ChipGroup chipGroup = getView().findViewById(R.id.chipGroup);
+chipGroup.setOnCheckedStateChangeListener((group, checkedIds) -> { });
 ```
