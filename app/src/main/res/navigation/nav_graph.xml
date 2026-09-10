@@ -170,6 +170,17 @@
     </fragment>
 
     <fragment
+        android:id="@+id/chipFragment"
+        android:name="com.zebra.zdsDemo.fragments.ChipFragment"
+        android:label="Chips"
+        tools:layout="@layout/fragment_chip">
+        <action
+            android:id="@+id/action_chipFragment_pop"
+            app:popUpTo="@id/chipFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
         android:id="@+id/selectInputFragment"
         android:name="com.zebra.zdsDemo.fragments.SelectInputFragment"
         android:label="Select input"

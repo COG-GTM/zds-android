@@ -65,6 +65,13 @@
         <attr name="isSharp" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="ZdsChip">
+        <attr name="chip_style" format="enum">
+            <enum name="selectable" value="0" />
+            <enum name="filter" value="1" />
+        </attr>
+    </declare-styleable>
+
     <declare-styleable name="ZdsSystemBanner">
         <attr name="title" />
         <attr name="title_centered" format="boolean" />
