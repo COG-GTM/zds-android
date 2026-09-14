@@ -25,4 +25,6 @@
     <string name="action_snackbar">Snackbar</string>
     <string name="action_banner">Banner</string>
     <string name="action_select_input">Select input</string>
+    <string name="navigation_search_hint">Search components</string>
+    <string name="navigation_search_empty">No components match your search</string>
 </resources>

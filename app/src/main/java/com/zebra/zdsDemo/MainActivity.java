@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mActionDrawerToggle;
     private DrawerLayout drawerLayout;
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
+    private NavigationSearch mNavigationSearch;
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Setup drawer navigation
         NavigationView navView = findViewById(R.id.navigation_view);
+        mNavigationSearch = NavigationSearch.attach(navView);
         navView.setNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.buttonsFragment:
@@ -154,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
             mActionDrawerToggle.syncState();
             drawerLayout.closeDrawers();
+            mNavigationSearch.reset();
             mCollapsingToolbarLayout.setTitle(Objects.requireNonNull(getSupportActionBar()).getTitle());
             return true;
         });
