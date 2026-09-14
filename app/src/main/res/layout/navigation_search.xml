@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/navigation_search_empty"
-        android:textColor="@color/zebra_hint"
+        android:textColor="@color/zebra_grey_subtle_icon"
         android:visibility="gone" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
