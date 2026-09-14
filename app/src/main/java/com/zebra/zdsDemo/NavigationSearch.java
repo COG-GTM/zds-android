@@ -20,10 +20,12 @@ import java.util.Locale;
 public class NavigationSearch {
 
     private final NavigationView navigationView;
+    private final ZdsSearchView searchView;
     private final TextView emptyState;
 
     private NavigationSearch(@NonNull NavigationView navigationView, @NonNull View header) {
         this.navigationView = navigationView;
+        this.searchView = header.findViewById(R.id.navigation_search);
         this.emptyState = header.findViewById(R.id.navigation_search_empty);
     }
 
@@ -31,7 +33,7 @@ public class NavigationSearch {
         View header = navigationView.inflateHeaderView(R.layout.navigation_search);
         NavigationSearch search = new NavigationSearch(navigationView, header);
 
-        ZdsSearchView searchView = header.findViewById(R.id.navigation_search);
+        ZdsSearchView searchView = search.searchView;
         searchView.setOnQueryTextListener(new ZdsSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -52,9 +54,11 @@ public class NavigationSearch {
     }
 
     /**
-     * Shows every menu item again, e.g. after the drawer closes on a selection.
+     * Clears the query and shows every menu item again, e.g. after the drawer closes on a selection.
      */
     public void reset() {
+        searchView.setQuery("", false);
+        searchView.clearFocus();
         filter(null);
     }
 
@@ -79,12 +83,26 @@ public class NavigationSearch {
             } else {
                 boolean matches = matches(item, query);
                 item.setVisible(matches);
+                syncActionView(item, matches);
                 if (matches) {
                     visibleLeaves++;
                 }
             }
         }
         return visibleLeaves;
+    }
+
+    /**
+     * Keeps a badge from lingering on a recycled row once its own item is filtered out.
+     */
+    private void syncActionView(MenuItem item, boolean itemVisible) {
+        View actionView = item.getActionView();
+        if (!(actionView instanceof TextView)) {
+            return;
+        }
+        CharSequence badge = ((TextView) actionView).getText();
+        boolean showBadge = itemVisible && badge != null && badge.length() > 0;
+        actionView.setVisibility(showBadge ? View.VISIBLE : View.GONE);
     }
 
     private boolean navigateToSingleMatch() {
