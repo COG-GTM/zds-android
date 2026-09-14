@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import com.google.android.material.navigation.NavigationView;
 import com.zebra.zds.ZdsSearchView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -115,22 +117,23 @@ public class NavigationSearch {
     }
 
     private MenuItem singleVisibleLeaf(Menu menu) {
-        MenuItem match = null;
-        for (int i = 0; i < menu.size(); i++) {
+        List<MenuItem> leaves = new ArrayList<>();
+        collectVisibleLeaves(menu, leaves, 2);
+        return leaves.size() == 1 ? leaves.get(0) : null;
+    }
+
+    private void collectVisibleLeaves(Menu menu, List<MenuItem> leaves, int limit) {
+        for (int i = 0; i < menu.size() && leaves.size() < limit; i++) {
             MenuItem item = menu.getItem(i);
             if (isSpacer(item) || !item.isVisible()) {
                 continue;
             }
-            MenuItem candidate = item.getSubMenu() != null ? singleVisibleLeaf(item.getSubMenu()) : item;
-            if (candidate == null) {
-                continue;
+            if (item.getSubMenu() != null) {
+                collectVisibleLeaves(item.getSubMenu(), leaves, limit);
+            } else {
+                leaves.add(item);
             }
-            if (match != null) {
-                return null;
-            }
-            match = candidate;
         }
-        return match;
     }
 
     private boolean matches(MenuItem item, String query) {
