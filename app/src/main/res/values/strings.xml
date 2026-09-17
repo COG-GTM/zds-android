@@ -25,4 +25,17 @@
     <string name="action_snackbar">Snackbar</string>
     <string name="action_banner">Banner</string>
     <string name="action_select_input">Select input</string>
+    <string name="action_icon_gallery">Icon Gallery</string>
+    <string name="icon_gallery_search_hint">Search icons</string>
+    <string name="icon_gallery_tab_all">All</string>
+    <string name="icon_gallery_tab_round">Round</string>
+    <string name="icon_gallery_tab_sharp">Sharp</string>
+    <string name="icon_gallery_tab_outline">Outline</string>
+    <string name="icon_gallery_empty">No icons match your search</string>
+    <string name="icon_gallery_copied">Copied %1$s</string>
+    <string name="icon_gallery_icon_description">Design system icon</string>
+    <plurals name="icon_gallery_count">
+        <item quantity="one">%d icon</item>
+        <item quantity="other">%d icons</item>
+    </plurals>
 </resources>

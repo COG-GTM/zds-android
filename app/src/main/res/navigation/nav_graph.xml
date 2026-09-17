@@ -179,4 +179,14 @@
             app:popUpTo="@id/selectInputFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/iconGalleryFragment"
+        android:name="com.zebra.zdsDemo.fragments.IconGalleryFragment"
+        android:label="Icon Gallery"
+        tools:layout="@layout/fragment_icon_gallery">
+        <action
+            android:id="@+id/action_iconGalleryFragment_pop"
+            app:popUpTo="@id/iconGalleryFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
