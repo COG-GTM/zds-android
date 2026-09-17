@@ -19,7 +19,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:contentDescription="@string/icon_gallery_icon_description"
-        app:tint="?android:attr/textColorPrimary"
+        app:tint="@color/textPrimaryVariant"
         tools:src="@drawable/ic_star_round" />
 
     <TextView
@@ -30,7 +30,7 @@
         android:ellipsize="middle"
         android:gravity="center_horizontal"
         android:maxLines="2"
-        android:textColor="?android:attr/textColorSecondary"
+        android:textColor="@color/textPrimaryVariant"
         android:textSize="10sp"
         tools:text="ic_star_round" />
 
