@@ -25,4 +25,24 @@
     <string name="action_snackbar">Snackbar</string>
     <string name="action_banner">Banner</string>
     <string name="action_select_input">Select input</string>
+    <string name="action_stepper">Stepper</string>
+
+    <string-array name="checkout_steps">
+        <item>Cart</item>
+        <item>Shipping</item>
+        <item>Payment</item>
+        <item>Review</item>
+    </string-array>
+    <string-array name="checkout_step_descriptions">
+        <item>Review the items in your cart before continuing.</item>
+        <item>Choose a delivery address and shipping speed.</item>
+        <item>Add a payment method for this order.</item>
+        <item>Confirm the order details and place your order.</item>
+    </string-array>
+    <string-array name="onboarding_steps">
+        <item>Account</item>
+        <item>Device</item>
+        <item>Network</item>
+        <item>Done</item>
+    </string-array>
 </resources>

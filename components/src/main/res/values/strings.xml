@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="optional">(Optional)</string>
+    <string name="stepper_description">Step %1$d of %2$d</string>
+    <string name="stepper_description_labelled">Step %1$d of %2$d, %3$s</string>
 </resources>
