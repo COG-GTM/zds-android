@@ -76,4 +76,13 @@
             <enum name="negative" value="3" />
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="ZdsStepper">
+        <attr name="steps" format="reference" />
+        <attr name="stepCount" format="integer" />
+        <attr name="currentStep" format="integer" />
+        <attr name="showLabels" format="boolean" />
+        <attr name="stepsClickable" format="boolean" />
+        <attr name="isSharp" />
+    </declare-styleable>
 </resources>

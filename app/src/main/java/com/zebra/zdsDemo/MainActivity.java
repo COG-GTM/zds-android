@@ -150,6 +150,10 @@ public class MainActivity extends AppCompatActivity {
                     navController.navigate(R.id.selectInputFragment);
                     break;
 
+                case R.id.stepperFragment:
+                    navController.navigate(R.id.stepperFragment);
+                    break;
+
             }
 
             mActionDrawerToggle.syncState();

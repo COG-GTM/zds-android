@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Zds.Stepper" parent="android:Widget">
+        <item name="showLabels">true</item>
+        <item name="isSharp">false</item>
+    </style>
+
+    <style name="Zds.Stepper.Sharp" parent="Zds.Stepper">
+        <item name="isSharp">true</item>
+    </style>
+</resources>

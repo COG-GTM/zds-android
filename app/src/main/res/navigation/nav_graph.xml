@@ -179,4 +179,15 @@
             app:popUpTo="@id/selectInputFragment"
             app:popUpToInclusive="true" />
     </fragment>
+
+    <fragment
+        android:id="@+id/stepperFragment"
+        android:name="com.zebra.zdsDemo.fragments.StepperFragment"
+        android:label="Stepper"
+        tools:layout="@layout/fragment_stepper">
+        <action
+            android:id="@+id/action_stepperFragment_pop"
+            app:popUpTo="@id/stepperFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

@@ -22,6 +22,7 @@
 16. [ZdsBanner](#ZdsBanner)
 17. [ZdsSystemBanner](#ZdsSystemBanner)
 18. [ZdsSelectInput](#ZdsSelectInput)
+19. [ZdsStepper](#ZdsStepper)
 
 <a name="ZdsButton"></a>
 
@@ -1005,4 +1006,72 @@ items.add("Item 4");
 
 ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireContext(), R.layout.select_input_item, items);
 selectInput.getTextInputEditText().setAdapter(adapter);
+```
+
+<a name="ZdsStepper"></a>
+
+## ZdsStepper
+
+## Class:
+
+**com.zebra.zds.ZdsStepper** is a subclass of <br>
+**android.view.View** <br>
+
+A horizontal step indicator for multi-step flows (checkout, onboarding, wizards). Steps before the
+current one are drawn as completed (filled, with a check mark), the current step is highlighted and
+later steps are drawn as upcoming. Moving between steps animates the connecting track.
+
+## Styles:
+
+- Zds.Stepper
+- Zds.Stepper.Sharp
+
+## Attributes:
+
+| Name           | Format    | Info                                                                          |
+| -------------- | --------- | ----------------------------------------------------------------------------- |
+| steps          | reference | `string-array` of step labels. Sets the step count.                           |
+| stepCount      | integer   | Number of unlabelled steps. Ignored when `steps` is set.                      |
+| currentStep    | integer   | Zero-based index of the active step. Default `0`.                             |
+| showLabels     | boolean   | Draw labels under the nodes. Default `true`.                                  |
+| stepsClickable | boolean   | Allow tapping completed steps to trigger `OnStepClickListener`. Default `false`. |
+| isSharp        | boolean   | Square nodes and butt track caps instead of circles.                          |
+
+## Methods:
+
+| Name                                                | Info                                                                     |
+| --------------------------------------------------- | ------------------------------------------------------------------------ |
+| setSteps( List\<String> steps )                      | Replaces the step labels. Clamps `currentStep` if needed.                |
+| setCurrentStep( int step )                          | Jumps to a step without animation.                                        |
+| setCurrentStep( int step, boolean animate )         | Moves to a step, animating the track when `animate` is true.             |
+| next() / previous()                                 | Moves one step with animation. Returns `false` at the first/last step.   |
+| isLastStep()                                        | `true` when the active step is the final one.                             |
+| getStepState( int step )                            | `COMPLETED`, `ACTIVE` or `UPCOMING`.                                      |
+| setOnStepChangeListener( OnStepChangeListener l )   | Called whenever the active step changes.                                  |
+| setOnStepClickListener( OnStepClickListener l )     | Called when a completed or active step is tapped (`stepsClickable=true`). |
+
+Upcoming steps are never clickable, so users cannot skip ahead. The view exposes a content
+description of the form "Step 2 of 4, Shipping" for accessibility and restores `currentStep` across
+configuration changes.
+
+## Example:
+
+```xml
+<com.zebra.zds.ZdsStepper
+    android:id="@+id/stepper"
+    style="@style/Zds.Stepper"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:steps="@array/checkout_steps"
+    app:currentStep="1"
+    app:stepsClickable="true" />
+```
+
+```java
+ZdsStepper stepper = getView().findViewById(R.id.stepper);
+stepper.setOnStepChangeListener((s, step) -> title.setText(s.getSteps().get(step)));
+stepper.setOnStepClickListener((s, step) -> s.setCurrentStep(step, true));
+
+nextButton.setOnClickListener(v -> stepper.next());
+backButton.setOnClickListener(v -> stepper.previous());
 ```
