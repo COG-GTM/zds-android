@@ -103,7 +103,7 @@ class ZdsStepper : View {
     private val colorSurface = ContextCompat.getColor(context, R.color.zebra_control_inverse)
     private val colorOnActive = ContextCompat.getColor(context, R.color.textInverse)
     private val colorLabel = ContextCompat.getColor(context, R.color.textPrimaryVariant)
-    private val colorLabelMuted = ContextCompat.getColor(context, R.color.zebra_hint)
+    private val colorLabelMuted = colorUpcoming
 
     private val fontRegular: Typeface? = ResourcesCompat.getFont(context, R.font.ibm_plex_sans_regular)
     private val fontMedium: Typeface? = ResourcesCompat.getFont(context, R.font.ibm_plex_sans_medium)
