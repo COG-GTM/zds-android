@@ -49,11 +49,18 @@ public class IconGalleryFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        allIcons.addAll(loadIcons());
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_icon_gallery, container, false);
 
-        allIcons.addAll(loadIcons());
+        style = Style.ALL;
+        query = "";
 
         count = root.findViewById(R.id.iconCount);
         emptyState = root.findViewById(R.id.iconEmptyState);
