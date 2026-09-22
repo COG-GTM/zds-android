@@ -2,6 +2,7 @@ package com.zebra.zds
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.MotionEvent
 import com.google.android.material.chip.Chip
 
 /**
@@ -12,4 +13,13 @@ import com.google.android.material.chip.Chip
  */
 class ZdsChip @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
-) : Chip(context, attrs)
+) : Chip(context, attrs) {
+
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        if (!isEnabled) return isClickable
+        return super.onTouchEvent(event)
+    }
+
+    override fun performCloseIconClick(): Boolean =
+        isEnabled && super.performCloseIconClick()
+}
