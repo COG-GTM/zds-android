@@ -179,4 +179,15 @@
             app:popUpTo="@id/selectInputFragment"
             app:popUpToInclusive="true" />
     </fragment>
+
+    <fragment
+        android:id="@+id/chipsFragment"
+        android:name="com.zebra.zdsDemo.fragments.ChipsFragment"
+        android:label="Chips"
+        tools:layout="@layout/fragment_chips">
+        <action
+            android:id="@+id/action_chipsFragment_pop"
+            app:popUpTo="@id/chipsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
