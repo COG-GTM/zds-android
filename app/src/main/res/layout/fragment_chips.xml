@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chipList"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    app:divider="@drawable/divider"
+    app:showDividers="middle">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Assist"
+        android:textAppearance="@style/TextAppearance.Zds.TitleSmall"
+        tools:ignore="HardcodedText" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/assistChips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/assistChip"
+            style="@style/Zds.Chip.Assist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Assist"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/assistChipIcon"
+            style="@style/Zds.Chip.Assist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="With icon"
+            app:chipIcon="@drawable/ic_tag_round"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            style="@style/Zds.Chip.Assist.Sharp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sharp"
+            app:chipIcon="@drawable/ic_tag_sharp"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            style="@style/Zds.Chip.Assist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Disabled"
+            tools:ignore="HardcodedText" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Filter"
+        android:textAppearance="@style/TextAppearance.Zds.TitleSmall"
+        tools:ignore="HardcodedText" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/filterChips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/filterChipAll"
+            style="@style/Zds.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="All"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/filterChipPrinters"
+            style="@style/Zds.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Printers"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/filterChipScanners"
+            style="@style/Zds.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scanners"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            android:id="@+id/filterChipTablets"
+            style="@style/Zds.Chip.Filter.Sharp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tablets"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            style="@style/Zds.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Disabled"
+            tools:ignore="HardcodedText" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <TextView
+        android:id="@+id/filterSummary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:textAppearance="@style/TextAppearance.Zds.BodySmall"
+        tools:text="Selected: All" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Input"
+        android:textAppearance="@style/TextAppearance.Zds.TitleSmall"
+        tools:ignore="HardcodedText" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/inputChips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.zebra.zds.ZdsChip
+            style="@style/Zds.Chip.Input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Warehouse A"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            style="@style/Zds.Chip.Input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Warehouse B"
+            app:chipIcon="@drawable/ic_label_round"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            style="@style/Zds.Chip.Input.Sharp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dock 12"
+            tools:ignore="HardcodedText" />
+
+        <com.zebra.zds.ZdsChip
+            style="@style/Zds.Chip.Input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Disabled"
+            tools:ignore="HardcodedText" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <com.zebra.zds.ZdsButton
+        android:id="@+id/resetInputChips"
+        style="@style/Zds.Button.Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restore removed chips"
+        android:theme="@style/Zds.Button.Text"
+        tools:ignore="HardcodedText" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
