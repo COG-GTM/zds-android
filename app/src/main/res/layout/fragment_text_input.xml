@@ -42,6 +42,16 @@
         android:layout_height="wrap_content"
         android:theme="@style/Zds.TextInput.Sharp" />
 
+    <com.zebra.zds.ZdsTextInput
+        android:id="@+id/zebra_text_input_counter"
+        style="@style/Zds.TextInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Zds.TextInput"
+        app:label="With counter (max 20)"
+        app:maxLength="20"
+        app:showCounter="true" />
+
     <com.zebra.zds.ZdsButton
         android:id="@+id/buttonSetError"
         style="@style/Zds.Button.Primary"

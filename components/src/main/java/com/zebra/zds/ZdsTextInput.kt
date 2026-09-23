@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.text.Editable
 import android.text.SpannableString
 import android.text.Spanned
+import android.text.TextWatcher
 import android.text.style.ForegroundColorSpan
 import android.util.AttributeSet
 import android.view.View
@@ -33,8 +34,21 @@ class ZdsTextInput : FrameLayout {
 
     var labelStyle: LabelStyle = LabelStyle.DEFAULT
 
+    var maxLength: Int = NO_MAX_LENGTH
+        set(value) {
+            field = value
+            updateState()
+        }
+
+    var showCounter: Boolean = false
+        set(value) {
+            field = value
+            updateState()
+        }
+
     var labelText: AppCompatTextView? = null
     var errorText: AppCompatTextView? = null
+    var counterText: AppCompatTextView? = null
     var infoIcon: AppCompatImageView? = null
     var textInputLayout: TextInputLayout? = null
     var textInputEditText: TextInputEditText? = null
@@ -78,6 +92,7 @@ class ZdsTextInput : FrameLayout {
 
         labelText = inflatedView.findViewById(R.id.textLabel)
         errorText = inflatedView.findViewById(R.id.textError)
+        counterText = inflatedView.findViewById(R.id.textCounter)
         infoIcon = inflatedView.findViewById(R.id.info_icon)
         textInputLayout = inflatedView.findViewById(R.id.textInputLayout)
         textInputEditText = inflatedView.findViewById(R.id.textInputEditText)
@@ -100,6 +115,11 @@ class ZdsTextInput : FrameLayout {
             // Hint property
             hintString = a.getString(R.styleable.ZdsTextInput_hint)
             setHint(hintString)
+
+            // Character counter
+            maxLength = a.getInt(R.styleable.ZdsTextInput_maxLength, NO_MAX_LENGTH)
+            showCounter =
+                a.getBoolean(R.styleable.ZdsTextInput_showCounter, maxLength != NO_MAX_LENGTH)
 
             // Prefix and suffix texts
             val prefix = a.getString(R.styleable.ZdsTextInput_prefixText)
@@ -141,6 +161,19 @@ class ZdsTextInput : FrameLayout {
         textInputLayout?.suffixTextView?.layoutParams?.apply {
             width = resources.getDimensionPixelSize(R.dimen.prefix_max_width)
         }
+
+        textInputEditText?.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) =
+                Unit
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) = Unit
+
+            override fun afterTextChanged(s: Editable?) {
+                updateState()
+            }
+        })
+
+        updateState()
     }
 
     fun setLabel(label: String?) {
@@ -180,41 +213,76 @@ class ZdsTextInput : FrameLayout {
 
     fun setError(error: String?) {
         errorString = error
-
-        if (errorString?.isNotEmpty() == true) {
-            errorText?.text = errorString
-            errorText?.setTextColor(context.resources.getColor(R.color.zebra_red_enabled))
-            errorText?.visibility = View.VISIBLE
-
-            infoIcon?.imageTintList =
-                ColorStateList.valueOf(resources.getColor(R.color.zebra_red_enabled))
-            infoIcon?.visibility = View.VISIBLE
-
-            textInputLayout?.boxStrokeColor = context.resources.getColor(R.color.zebra_red_enabled)
-            textInputLayout?.setBoxBackgroundColorResource(R.color.zebra_red_error_background)
-        } else if (hintString?.isNotEmpty() == true) {
-            setHint(hintString)
-        } else {
-            errorText?.text = null
-            errorText?.setTextColor(context.resources.getColor(R.color.textDisabled))
-            errorText?.visibility = View.GONE
-
-            infoIcon?.imageTintList =
-                ColorStateList.valueOf(resources.getColor(R.color.textDisabled))
-            infoIcon?.visibility = View.GONE
-
-            textInputLayout?.boxStrokeColor = MaterialColors.getColor(
-                context,
-                R.attr.colorPrimary,
-                Color.BLACK
-            )
-            textInputLayout?.boxBackgroundColor = Color.TRANSPARENT
-        }
+        updateState()
     }
 
     fun setHint(hint: String?) {
         hintString = hint
+        updateState()
+    }
 
+    override fun setEnabled(enabled: Boolean) {
+        super.setEnabled(enabled)
+        textInputLayout?.isEnabled = enabled
+        textInputEditText?.isEnabled = enabled
+        updateState()
+    }
+
+    private fun isOverMaxLength(): Boolean =
+        maxLength != NO_MAX_LENGTH && (textInputEditText?.text?.length ?: 0) > maxLength
+
+    /**
+     * Renders the counter and the error row, where a max length violation takes precedence over an
+     * error set by the host app, which in turn takes precedence over the hint.
+     */
+    private fun updateState() {
+        updateCounter()
+
+        val message = if (isOverMaxLength()) {
+            context.getString(R.string.text_input_max_length_error, maxLength)
+        } else {
+            errorString
+        }
+
+        if (message?.isNotEmpty() == true) {
+            applyErrorState(message)
+        } else {
+            applyHintState()
+        }
+    }
+
+    private fun updateCounter() {
+        if (!showCounter || maxLength == NO_MAX_LENGTH) {
+            counterText?.visibility = View.GONE
+            return
+        }
+
+        val length = textInputEditText?.text?.length ?: 0
+        counterText?.text = context.getString(R.string.text_input_counter, length, maxLength)
+        counterText?.visibility = View.VISIBLE
+
+        val counterColor = when {
+            !isEnabled -> R.color.textDisabled
+            isOverMaxLength() -> R.color.zebra_red_enabled
+            else -> R.color.zebra_hint
+        }
+        counterText?.setTextColor(resources.getColor(counterColor))
+    }
+
+    private fun applyErrorState(message: String) {
+        errorText?.text = message
+        errorText?.setTextColor(context.resources.getColor(R.color.zebra_red_enabled))
+        errorText?.visibility = View.VISIBLE
+
+        infoIcon?.imageTintList =
+            ColorStateList.valueOf(resources.getColor(R.color.zebra_red_enabled))
+        infoIcon?.visibility = View.VISIBLE
+
+        textInputLayout?.boxStrokeColor = context.resources.getColor(R.color.zebra_red_enabled)
+        textInputLayout?.setBoxBackgroundColorResource(R.color.zebra_red_error_background)
+    }
+
+    private fun applyHintState() {
         if (hintString?.isNotEmpty() == true) {
             errorText?.text = hintString
             errorText?.setTextColor(context.resources.getColor(R.color.textDisabled))
@@ -225,7 +293,11 @@ class ZdsTextInput : FrameLayout {
             infoIcon?.visibility = View.VISIBLE
         } else {
             errorText?.text = null
+            errorText?.setTextColor(context.resources.getColor(R.color.textDisabled))
             errorText?.visibility = View.GONE
+
+            infoIcon?.imageTintList =
+                ColorStateList.valueOf(resources.getColor(R.color.textDisabled))
             infoIcon?.visibility = View.GONE
         }
 
@@ -265,5 +337,9 @@ class ZdsTextInput : FrameLayout {
 
     fun setPlaceholder(placeholder: String?) {
         textInputEditText?.hint = placeholder
+    }
+
+    companion object {
+        const val NO_MAX_LENGTH = -1
     }
 }

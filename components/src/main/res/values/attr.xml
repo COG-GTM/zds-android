@@ -17,6 +17,9 @@
         <attr name="startIconDrawable" />
         <attr name="endIconDrawable" format="reference" />
 
+        <attr name="maxLength" format="integer" />
+        <attr name="showCounter" format="boolean" />
+
         <attr name="label_style" format="enum">
             <enum name="none" value="0" />
             <enum name="mandatory" value="1" />

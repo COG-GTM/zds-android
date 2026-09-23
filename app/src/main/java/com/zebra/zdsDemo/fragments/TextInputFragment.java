@@ -58,6 +58,12 @@ public class TextInputFragment extends Fragment {
         Objects.requireNonNull(inputSharp.getTextInputEditText()).setGravity(Gravity.TOP);
         inputSharp.getTextInputEditText().setMinLines(4);
 
+        ZdsTextInput inputCounter = root.findViewById(R.id.zebra_text_input_counter);
+        inputCounter.setHint("Helper text");
+        inputCounter.setPlaceholder("Type more than 20 characters");
+        Objects.requireNonNull(inputCounter.getTextInputEditText()).setInputType(TYPE_CLASS_TEXT);
+        inputCounter.getTextInputEditText().setMaxLines(1);
+
         ZdsButton btnSetError = root.findViewById(R.id.buttonSetError);
         ZdsButton btnClearError = root.findViewById(R.id.buttonClearError);
 
