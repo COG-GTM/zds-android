@@ -77,19 +77,19 @@
     <com.zebra.zds.ZdsButton
         android:id="@+id/showBanner"
         style="@style/Zds.Button.Primary"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Show Banner"
         android:theme="@style/Zds.Button.Primary"
         app:layout_constraintEnd_toStartOf="@id/dismissBanner"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sharpStyle" />
 
     <com.zebra.zds.ZdsButton
         android:id="@+id/dismissBanner"
         style="@style/Zds.Button.Outline"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:text="Dismiss Banner"
@@ -162,22 +162,22 @@
     <com.zebra.zds.ZdsButton
         android:id="@+id/showSystemBanner"
         style="@style/Zds.Button.Primary"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Show SystemBanner"
+        android:text="Show System"
         android:theme="@style/Zds.Button.Primary"
         app:layout_constraintEnd_toStartOf="@id/dismissSystemBanner"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleCentered" />
 
     <com.zebra.zds.ZdsButton
         android:id="@+id/dismissSystemBanner"
         style="@style/Zds.Button.Outline"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:text="Dismiss SystemBanner"
+        android:text="Dismiss System"
         android:theme="@style/Zds.Button.Outline"
         app:layout_constraintBottom_toBottomOf="@id/showSystemBanner"
         app:layout_constraintEnd_toEndOf="parent"
