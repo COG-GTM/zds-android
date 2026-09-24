@@ -24,6 +24,7 @@ internal class BannerDismissDelegate(private val banner: View) {
             return
         }
 
+        heightBeforeAnimation = banner.layoutParams?.height
         animateHeight(height, 0) { hide() }
     }
 
@@ -33,10 +34,17 @@ internal class BannerDismissDelegate(private val banner: View) {
         banner.alpha = 1f
 
         if (banner.visibility == View.VISIBLE) return
-        banner.visibility = View.VISIBLE
 
         val height = measureBannerHeight()
-        if (height == 0 || animatorDurationScale() == 0f) return
+        if (height == 0 || animatorDurationScale() == 0f) {
+            banner.visibility = View.VISIBLE
+            return
+        }
+
+        heightBeforeAnimation = banner.layoutParams?.height
+        setLayoutHeight(0)
+        banner.alpha = 0f
+        banner.visibility = View.VISIBLE
 
         animateHeight(0, height) { restoreHeight() }
     }
@@ -54,7 +62,6 @@ internal class BannerDismissDelegate(private val banner: View) {
     }
 
     private fun animateHeight(from: Int, to: Int, onEnd: () -> Unit) {
-        heightBeforeAnimation = banner.layoutParams?.height
         animator = ValueAnimator.ofInt(from, to).apply {
             duration = DISMISS_DURATION_MS
             interpolator = AccelerateDecelerateInterpolator()
