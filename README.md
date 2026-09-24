@@ -2,9 +2,28 @@
 
 Zebra Design System components for Android.
 
+## Support window
+
+These are the versions the library is built and validated against. Consuming apps outside this window may need additional work.
+
+| Item | Version |
+| --- | --- |
+| `minSdk` | 21 |
+| `compileSdk` / `targetSdk` | 36 |
+| JDK (to run the build) | 17 (Temurin) |
+| Android Gradle Plugin | 8.7.1 |
+| Gradle | 8.9 |
+| Kotlin | 1.7.10 |
+
+When these move:
+
+- `targetSdk` (and `compileSdk` with it) follows Google Play's target-API requirement for app updates; reviewed each August, before Play's deadline.
+- `minSdk` only moves with agreement from the consuming Zebra apps, since raising it drops devices for them.
+- JDK, AGP, Gradle and Kotlin are reviewed quarterly; Dependabot (`.github/dependabot.yml`) opens the AGP/Kotlin, AndroidX and test-dependency updates weekly and CI checks them, so the quarterly review is a decision point, not a discovery exercise.
+
 ## Setup
 
-> 🚧 **Note**: This has been verified with`compileSdkVersion 34`. Other sdk versions may require additional work.
+> 🚧 **Note**: This has been verified with `compileSdk 36` / `targetSdk 36` / `minSdk 21`. Other sdk versions may require additional work.
 
 ### 1. Setup credentials
 

@@ -15,6 +15,12 @@ We're always open to pull requests, but these should be small and clearly descri
 
 When you're ready to start coding, fork the needed repository to your own GitHub account and make your changes in a new branch. Once you're happy, open a pull request and explain what the change is and why you think we should include it in our project.
 
+## Dependencies and the support window
+
+The SDK levels, JDK and build tooling this library is validated against — and the rule for when each of them moves — are in the [support window](./README.md#support-window) section of the README. Keep it accurate: a change to `minSdk`, `compileSdk`/`targetSdk`, the JDK, AGP, Gradle or Kotlin should update that table in the same pull request.
+
+Dependabot (`.github/dependabot.yml`) opens weekly update pull requests for Gradle dependencies in the root, `app` and `components` builds and for the GitHub Actions used by our workflows, grouped so AndroidX, test and build-tooling updates arrive as one pull request each. They go through the same build, lint and test checks as any other pull request.
+
 ## Code reviews
 
 All submissions, including submissions by project members, require review. We use GitHub pull requests (PRs) for this purpose. Consult [GitHub Help](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) for more information on using pull requests.
