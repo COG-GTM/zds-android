@@ -19,7 +19,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -179,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         getBanner().setOnClickListener(v -> hideBanner());
+        getBanner().setOnDismissListener(banner -> getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.zebra_toolbar)));
     }
 
     private void setMenuCounter(NavigationView navigationView, @IdRes int itemId, int count) {
@@ -264,13 +264,10 @@ public class MainActivity extends AppCompatActivity {
         }
         getWindow().setStatusBarColor(ContextCompat.getColor(this, statusBarColor));
 
-        getBanner().setVisibility(View.VISIBLE);
-        ((MotionLayout) findViewById(R.id.mainLayout)).transitionToEnd();
+        getBanner().show();
     }
 
     public void hideBanner() {
-        ((MotionLayout) findViewById(R.id.mainLayout)).transitionToStart();
-        getBanner().setVisibility(View.GONE);
-        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.zebra_toolbar));
+        getBanner().dismiss();
     }
 }

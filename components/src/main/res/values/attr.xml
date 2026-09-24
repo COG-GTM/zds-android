@@ -63,6 +63,7 @@
             <enum name="negative" value="4" />
         </attr>
         <attr name="isSharp" format="boolean" />
+        <attr name="showClose" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="ZdsSystemBanner">
