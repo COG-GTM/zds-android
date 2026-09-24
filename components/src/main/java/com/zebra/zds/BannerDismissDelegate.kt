@@ -87,11 +87,14 @@ internal class BannerDismissDelegate(private val banner: View) {
     }
 
     private fun restoreHeight() {
-        heightBeforeAnimation?.let { setLayoutHeight(it) }
+        heightBeforeAnimation?.let { applyHeight(it) }
         heightBeforeAnimation = null
     }
 
-    private fun setLayoutHeight(height: Int) {
+    // 0 means MATCH_CONSTRAINT inside a ConstraintLayout, so collapse to a single pixel instead.
+    private fun setLayoutHeight(height: Int) = applyHeight(height.coerceAtLeast(COLLAPSED_HEIGHT))
+
+    private fun applyHeight(height: Int) {
         val params = banner.layoutParams ?: return
         params.height = height
         banner.layoutParams = params
@@ -117,5 +120,6 @@ internal class BannerDismissDelegate(private val banner: View) {
 
     private companion object {
         const val DISMISS_DURATION_MS = 200L
+        const val COLLAPSED_HEIGHT = 1
     }
 }
