@@ -36,6 +36,8 @@ class ZdsSystemBanner : FrameLayout {
             applyStyle(field)
         }
 
+    private val dismissDelegate = BannerDismissDelegate(this)
+
     constructor(context: Context) : super(context) {
         initialize(context, null, 0, 0)
     }
@@ -98,7 +100,17 @@ class ZdsSystemBanner : FrameLayout {
         }
 
         applyStyle(style)
+
+        arrowImage?.setOnClickListener { dismiss() }
     }
+
+    fun setOnDismissListener(listener: OnBannerDismissListener?) {
+        dismissDelegate.onDismissListener = listener
+    }
+
+    fun dismiss() = dismissDelegate.dismiss()
+
+    fun show() = dismissDelegate.show()
 
     fun centerTitle(titleCentered: Boolean) {
         val mainLayout = findViewById<ConstraintLayout>(R.id.background)

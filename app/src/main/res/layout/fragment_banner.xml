@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/motionLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:layoutDescription="@xml/banner_scene"
-    tools:applyMotionScene="false">
+    android:layout_height="wrap_content">
 
     <com.zebra.zds.ZdsBanner
         android:id="@+id/banner"
@@ -80,13 +77,27 @@
     <com.zebra.zds.ZdsButton
         android:id="@+id/showBanner"
         style="@style/Zds.Button.Primary"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Show Banner"
         android:theme="@style/Zds.Button.Primary"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/dismissBanner"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sharpStyle" />
+
+    <com.zebra.zds.ZdsButton
+        android:id="@+id/dismissBanner"
+        style="@style/Zds.Button.Outline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="Dismiss Banner"
+        android:theme="@style/Zds.Button.Outline"
+        app:layout_constraintBottom_toBottomOf="@id/showBanner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/showBanner"
+        app:layout_constraintTop_toTopOf="@id/showBanner" />
 
     <TextView
         android:id="@+id/systemLabel"
@@ -151,12 +162,26 @@
     <com.zebra.zds.ZdsButton
         android:id="@+id/showSystemBanner"
         style="@style/Zds.Button.Primary"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Show SystemBanner"
+        android:text="Show System"
         android:theme="@style/Zds.Button.Primary"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/dismissSystemBanner"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleCentered" />
 
-</androidx.constraintlayout.motion.widget.MotionLayout>
+    <com.zebra.zds.ZdsButton
+        android:id="@+id/dismissSystemBanner"
+        style="@style/Zds.Button.Outline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="Dismiss System"
+        android:theme="@style/Zds.Button.Outline"
+        app:layout_constraintBottom_toBottomOf="@id/showSystemBanner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/showSystemBanner"
+        app:layout_constraintTop_toTopOf="@id/showSystemBanner" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

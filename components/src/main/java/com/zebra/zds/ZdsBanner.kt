@@ -33,6 +33,12 @@ class ZdsBanner : FrameLayout {
     var closeButton: ZdsIconButton? = null
     var closeAction: OnClickListener? = null
 
+    var showClose: Boolean = true
+        set(value) {
+            field = value
+            applyShowClose(field)
+        }
+
     var actionButtonOne: ZdsButton? = null
     var actionButtonTwo: ZdsButton? = null
 
@@ -52,6 +58,8 @@ class ZdsBanner : FrameLayout {
             field = value
             applySharpStyle(field)
         }
+
+    private val dismissDelegate = BannerDismissDelegate(this)
 
 
     constructor(context: Context) : super(context) {
@@ -116,6 +124,9 @@ class ZdsBanner : FrameLayout {
             // Sharp style
             isSharp = a.getBoolean(R.styleable.ZdsBanner_isSharp, false)
 
+            // Close button property
+            showClose = a.getBoolean(R.styleable.ZdsBanner_showClose, true)
+
             // Message property
             messageString = a.getString(R.styleable.ZdsBanner_message)
 
@@ -127,11 +138,21 @@ class ZdsBanner : FrameLayout {
 
         applyStyle(style)
         applySharpStyle(isSharp)
+        applyShowClose(showClose)
 
         closeButton?.setOnClickListener { v ->
-            closeAction?.onClick(v)
+            val action = closeAction
+            if (action != null) action.onClick(v) else dismiss()
         }
     }
+
+    fun setOnDismissListener(listener: OnBannerDismissListener?) {
+        dismissDelegate.onDismissListener = listener
+    }
+
+    fun dismiss() = dismissDelegate.dismiss()
+
+    fun show() = dismissDelegate.show()
 
     private fun applyStyle(style: Style) {
         var colorTint = ContextCompat.getColor(context, R.color.zebra_control)
@@ -182,6 +203,10 @@ class ZdsBanner : FrameLayout {
         findViewById<ConstraintLayout>(R.id.background).setBackgroundColor(colorBackground)
         card?.setStrokeColor(ColorStateList.valueOf(colorStroke))
         card?.invalidate()
+    }
+
+    private fun applyShowClose(showClose: Boolean) {
+        closeButton?.visibility = if (showClose) VISIBLE else GONE
     }
 
     private fun applySharpStyle(isSharp: Boolean) {

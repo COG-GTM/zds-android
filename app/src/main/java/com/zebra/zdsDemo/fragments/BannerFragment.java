@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
-import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.fragment.app.Fragment;
 
 import com.zebra.zdsDemo.MainActivity;
@@ -22,7 +22,6 @@ import java.util.Objects;
 public class BannerFragment extends Fragment {
 
 
-    MotionLayout mainLayout;
     ZdsBanner banner;
 
     public BannerFragment() {
@@ -37,7 +36,6 @@ public class BannerFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_banner, container, false);
 
-        mainLayout = root.findViewById(R.id.motionLayout);
         banner = root.findViewById(R.id.banner);
 
         ((RadioGroup) root.findViewById(R.id.bannerStyle)).setOnCheckedChangeListener((group, checkedId) -> {
@@ -70,11 +68,12 @@ public class BannerFragment extends Fragment {
         Objects.requireNonNull(banner.getTitle()).setText("Banner title");
         Objects.requireNonNull(banner.getMessage()).setText("Lorem ipsum dolor sit amet, conse ctetur cididunt ut labore et do lore magna aliqua.");
 
-        banner.setActionOne("Action 1", v -> hideBanner());
-        banner.setActionTwo("Action 2", v -> hideBanner());
-        banner.setCloseAction(v -> hideBanner());
+        banner.setActionOne("Action 1", v -> banner.dismiss());
+        banner.setActionTwo("Action 2", v -> banner.dismiss());
+        banner.setOnDismissListener(dismissed -> toast("Banner dismissed"));
 
-        ((ZdsButton) root.findViewById(R.id.showBanner)).setOnClickListener(v -> showBanner());
+        ((ZdsButton) root.findViewById(R.id.showBanner)).setOnClickListener(v -> banner.show());
+        ((ZdsButton) root.findViewById(R.id.dismissBanner)).setOnClickListener(v -> banner.dismiss());
 
         // System banner
 
@@ -105,6 +104,7 @@ public class BannerFragment extends Fragment {
         });
 
         ((ZdsButton) root.findViewById(R.id.showSystemBanner)).setOnClickListener(v -> ((MainActivity) requireActivity()).showBanner());
+        ((ZdsButton) root.findViewById(R.id.dismissSystemBanner)).setOnClickListener(v -> ((MainActivity) requireActivity()).hideBanner());
 
         return root;
     }
@@ -118,12 +118,7 @@ public class BannerFragment extends Fragment {
         }
     }
 
-    private void showBanner() {
-        banner.setVisibility(View.VISIBLE);
-        mainLayout.transitionToEnd();
-    }
-
-    private void hideBanner() {
-        mainLayout.transitionToStart();
+    private void toast(String text) {
+        Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show();
     }
 }
