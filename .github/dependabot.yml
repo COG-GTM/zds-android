@@ -1,0 +1,52 @@
+version: 2
+updates:
+  - package-ecosystem: gradle
+    # Root holds the AGP and Kotlin plugin classpath; app and components hold the library dependencies.
+    directories:
+      - /
+      - /app
+      - /components
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Etc/UTC
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+    commit-message:
+      prefix: deps
+    groups:
+      build-tooling:
+        patterns:
+          - com.android.tools.build:*
+          - org.jetbrains.kotlin:*
+      androidx:
+        patterns:
+          - androidx.*
+          - com.google.android.material:material
+        exclude-patterns:
+          - androidx.test*
+      test:
+        patterns:
+          - androidx.test*
+          - junit:junit
+          - org.junit*
+          - org.mockito*
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Etc/UTC
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+    commit-message:
+      prefix: deps
+    groups:
+      github-actions:
+        patterns:
+          - "*"
