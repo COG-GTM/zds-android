@@ -19,6 +19,7 @@ import com.zebra.zds.ZdsSwitch;
 public class DialogsFragment extends Fragment {
 
     private static final String KEY_SHOWN_DIALOG = "shownDialog";
+    private static final String KEY_DIALOG_STATE = "dialogState";
     private static final int DIALOG_NONE = 0;
     private static final int DIALOG_DEFAULT = 1;
     private static final int DIALOG_LONG_CONTENT = 2;
@@ -58,6 +59,11 @@ public class DialogsFragment extends Fragment {
         // style switches and radio groups have restored their state.
         if (savedInstanceState != null) {
             showDialog(savedInstanceState.getInt(KEY_SHOWN_DIALOG, DIALOG_NONE));
+            Bundle dialogState = savedInstanceState.getBundle(KEY_DIALOG_STATE);
+            if (dialog != null && dialogState != null) {
+                // Restores view state such as the content scroll position.
+                dialog.onRestoreInstanceState(dialogState);
+            }
         }
     }
 
@@ -65,6 +71,9 @@ public class DialogsFragment extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(KEY_SHOWN_DIALOG, shownDialog);
+        if (dialog != null) {
+            outState.putBundle(KEY_DIALOG_STATE, dialog.onSaveInstanceState());
+        }
     }
 
     @Override
