@@ -8,12 +8,14 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
+import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.Window
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.cardview.widget.CardView
+import androidx.core.widget.NestedScrollView
 import com.google.android.material.button.MaterialButton
 
 class ZdsDialog(context: Context) : Dialog(context) {
@@ -138,6 +140,7 @@ class ZdsDialog(context: Context) : Dialog(context) {
             val contentLayout = LayoutInflater.from(dialog.context)
                 .inflate(R.layout.dialog_content, mainLayout, false)
             contentLayout.findViewById<AppCompatTextView>(R.id.contentText).text = this.content
+            setupScrollDividers(contentLayout)
             mainLayout.addView(contentLayout)
 
             // Setup actions
@@ -195,6 +198,24 @@ class ZdsDialog(context: Context) : Dialog(context) {
             }
 
             return dialog
+        }
+
+        private fun setupScrollDividers(contentLayout: View) {
+            val scrollView = contentLayout.findViewById<NestedScrollView>(R.id.contentScroll)
+            val topDivider = contentLayout.findViewById<View>(R.id.contentTopDivider)
+            val bottomDivider = contentLayout.findViewById<View>(R.id.contentBottomDivider)
+
+            val updateDividers = {
+                topDivider.visibility =
+                    if (scrollView.canScrollVertically(-1)) VISIBLE else INVISIBLE
+                bottomDivider.visibility =
+                    if (scrollView.canScrollVertically(1)) VISIBLE else INVISIBLE
+            }
+
+            scrollView.setOnScrollChangeListener(
+                NestedScrollView.OnScrollChangeListener { _, _, _, _, _ -> updateDividers() }
+            )
+            scrollView.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ -> updateDividers() }
         }
     }
 }

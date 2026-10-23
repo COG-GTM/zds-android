@@ -8,7 +8,7 @@
     app:cardBackgroundColor="?attr/colorSurfaceVariant"
     app:strokeColor="@android:color/transparent">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <com.zebra.zds.ZdsDialogLayout
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

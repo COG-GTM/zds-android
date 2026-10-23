@@ -5,6 +5,7 @@
     <dimen name="fab_size">64dp</dimen>
     <dimen name="prefix_max_width">24dp</dimen>
     <dimen name="text_input_corner_radius">4dp</dimen>
+    <dimen name="zds_dialog_max_width">560dp</dimen>
 
 
     <dimen name='text_size_display_large'>52sp</dimen>
