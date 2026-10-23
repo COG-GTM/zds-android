@@ -88,4 +88,13 @@
         android:layout_gravity="center"
         android:text="Show Dialog"
         android:theme="@style/Zds.Button.Primary" />
+
+    <com.zebra.zds.ZdsButton
+        android:id="@+id/showLongContentDialogButton"
+        style="@style/Zds.Button.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Long content"
+        android:theme="@style/Zds.Button.Primary" />
 </androidx.appcompat.widget.LinearLayoutCompat>
