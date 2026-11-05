@@ -76,4 +76,11 @@
             <enum name="negative" value="3" />
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="ZdsChip">
+        <attr name="chip_variant" format="enum">
+            <enum name="selectable" value="0" />
+            <enum name="filter" value="1" />
+        </attr>
+    </declare-styleable>
 </resources>
