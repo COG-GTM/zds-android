@@ -22,6 +22,7 @@
 16. [ZdsBanner](#ZdsBanner)
 17. [ZdsSystemBanner](#ZdsSystemBanner)
 18. [ZdsSelectInput](#ZdsSelectInput)
+19. [ZdsChip](#ZdsChip)
 
 <a name="ZdsButton"></a>
 
@@ -1005,4 +1006,75 @@ items.add("Item 4");
 
 ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireContext(), R.layout.select_input_item, items);
 selectInput.getTextInputEditText().setAdapter(adapter);
+```
+
+<a name="ZdsChip"></a>
+
+## ZdsChip
+
+## Class:
+
+**com.zebra.zds.ZdsChip** is a subclass of<br>
+**com.google.android.material.chip.Chip**
+
+## Styles:
+
+- Zds.Chip.Selectable - single choice chip, highlights when selected
+- Zds.Chip.Filter - toggleable chip, shows a check mark when selected
+
+## Attributes:
+
+| Name         | Format             | Info                                       |
+| ------------ | ------------------ | ------------------------------------------ |
+| chip_variant | selectable, filter | Variant of the chip. Set by the styles.    |
+
+## Methods:
+
+| Name                                   | Info                     |
+| -------------------------------------- | ------------------------ |
+| setVariant( ZdsChip.Variant variant )  | Sets the chip variant    |
+| getVariant()                           | Returns the chip variant |
+
+## Example:
+
+Group selectable chips in a **ChipGroup** with single selection, and filter chips in a
+**ChipGroup** with multiple selection.
+
+```xml
+<com.google.android.material.chip.ChipGroup
+    android:id="@+id/selectableChipGroup"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:checkedChip="@id/chipAll"
+    app:selectionRequired="true"
+    app:singleSelection="true">
+
+    <com.zebra.zds.ZdsChip
+        android:id="@+id/chipAll"
+        style="@style/Zds.Chip.Selectable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All" />
+
+    <com.zebra.zds.ZdsChip
+        android:id="@+id/chipScanners"
+        style="@style/Zds.Chip.Selectable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Scanners" />
+</com.google.android.material.chip.ChipGroup>
+
+<com.google.android.material.chip.ChipGroup
+    android:id="@+id/filterChipGroup"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.zebra.zds.ZdsChip
+        android:id="@+id/chipInStock"
+        style="@style/Zds.Chip.Filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:text="In stock" />
+</com.google.android.material.chip.ChipGroup>
 ```

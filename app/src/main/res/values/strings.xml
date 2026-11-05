@@ -12,6 +12,10 @@
     <string name="action_switch">Switch</string>
     <string name="action_radio">Radio Buttons</string>
     <string name="action_checkbox">Checkbox</string>
+    <string name="action_chips">Chips</string>
+    <string name="chips_selected">Selected: %1$s</string>
+    <string name="chips_active_filters">Active filters: %1$s</string>
+    <string name="chips_none">None</string>
     <string name="action_progress_indicators">Progress Indicators</string>
     <string name="menu_action_favorite">Favorite</string>
     <string name="action_toolbar">Toolbar</string>

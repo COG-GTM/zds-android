@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Zds.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="chip_variant">selectable</item>
+        <item name="android:checkable">true</item>
+        <item name="chipBackgroundColor">@color/zds_chip_background</item>
+        <item name="chipStrokeColor">@color/zds_chip_stroke</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipCornerRadius">8dp</item>
+        <item name="chipMinHeight">32dp</item>
+        <item name="android:textColor">@color/zds_chip_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.Zds.LabelLarge</item>
+        <item name="chipIconTint">@color/zds_chip_content</item>
+        <item name="checkedIcon">@drawable/ic_check_mark_round</item>
+        <item name="checkedIconTint">@color/zds_chip_content</item>
+        <item name="rippleColor">@color/zebra_grey_subtle_stroke</item>
+    </style>
+
+    <style name="Zds.Chip.Selectable" parent="Zds.Chip">
+        <item name="chip_variant">selectable</item>
+        <item name="checkedIconVisible">false</item>
+    </style>
+
+    <style name="Zds.Chip.Filter" parent="Zds.Chip">
+        <item name="chip_variant">filter</item>
+        <item name="checkedIconVisible">true</item>
+    </style>
+
+</resources>
