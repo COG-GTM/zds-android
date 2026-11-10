@@ -7,6 +7,7 @@ import android.os.Build
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.widget.SearchView
@@ -41,8 +42,14 @@ class ZdsSearchView @JvmOverloads constructor(
     private var queryTextFocusChangeListener: OnFocusChangeListener? = null
 
     init {
-        findViewById<android.view.View>(androidx.appcompat.R.id.search_plate).background = null
-        findViewById<android.view.View>(androidx.appcompat.R.id.submit_area).background = null
+        // Inner containers can inherit an opaque android:background from a parent theme overlay
+        // (e.g. Zds.Toolbar), which would hide the outline drawn on this view.
+        listOf(
+            androidx.appcompat.R.id.search_bar,
+            androidx.appcompat.R.id.search_edit_frame,
+            androidx.appcompat.R.id.search_plate,
+            androidx.appcompat.R.id.submit_area
+        ).forEach { findViewById<View>(it).background = null }
 
         backgroundDrawable.setColor(
             MaterialColors.getColor(
