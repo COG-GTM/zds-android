@@ -25,4 +25,26 @@
     <string name="action_snackbar">Snackbar</string>
     <string name="action_banner">Banner</string>
     <string name="action_select_input">Select input</string>
+    <string name="search_hint">Search components</string>
+    <string name="search_sharp_corners">Sharp corners</string>
+    <string name="search_empty_state">No results for \u201C%1$s\u201D</string>
+    <string-array name="search_component_names">
+        <item>@string/action_banner</item>
+        <item>@string/action_buttons</item>
+        <item>@string/action_checkbox</item>
+        <item>@string/action_dialogs</item>
+        <item>@string/action_dropdown</item>
+        <item>@string/action_fab</item>
+        <item>@string/action_icon_buttons</item>
+        <item>@string/action_lists</item>
+        <item>@string/action_progress_indicators</item>
+        <item>@string/action_radio</item>
+        <item>@string/action_search</item>
+        <item>@string/action_select_input</item>
+        <item>@string/action_snackbar</item>
+        <item>@string/action_switch</item>
+        <item>@string/action_tabs</item>
+        <item>@string/action_text_input</item>
+        <item>@string/action_toolbar</item>
+    </string-array>
 </resources>

@@ -1,22 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/searchLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
+    android:defaultFocusHighlightEnabled="false"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
     android:padding="16dp"
     app:divider="@drawable/divider"
-    app:showDividers="middle">
+    app:showDividers="middle"
+    tools:targetApi="o">
 
     <com.zebra.zds.ZdsSearchView
         android:id="@+id/zebra_search"
         style="@style/Zds.SearchView.Layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Zds.SearchView.Layout" />
+        android:theme="@style/Zds.SearchView.Layout"
+        app:queryHint="@string/search_hint"
+        app:zdsSearchStyle="round" />
+
+    <com.zebra.zds.ZdsSwitch
+        android:id="@+id/search_sharp_switch"
+        style="@style/Zds.Switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_sharp_corners"
+        android:theme="@style/Zds.Switch" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/search_empty_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingVertical="24dp"
+        android:textAppearance="?attr/textAppearanceBodyMedium"
+        android:textColor="@color/zebra_grey_subtle_icon"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_results"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
