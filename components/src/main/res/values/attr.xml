@@ -65,6 +65,13 @@
         <attr name="isSharp" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="ZdsSearchView">
+        <attr name="zdsSearchStyle" format="enum">
+            <enum name="round" value="0" />
+            <enum name="sharp" value="1" />
+        </attr>
+    </declare-styleable>
+
     <declare-styleable name="ZdsSystemBanner">
         <attr name="title" />
         <attr name="title_centered" format="boolean" />

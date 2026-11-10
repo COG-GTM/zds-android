@@ -5,6 +5,8 @@
     <dimen name="fab_size">64dp</dimen>
     <dimen name="prefix_max_width">24dp</dimen>
     <dimen name="text_input_corner_radius">4dp</dimen>
+    <dimen name="search_view_corner_radius">4dp</dimen>
+    <dimen name="search_view_stroke_width">2dp</dimen>
 
 
     <dimen name='text_size_display_large'>52sp</dimen>
