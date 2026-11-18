@@ -53,7 +53,7 @@ dependencies {
 
 ---
 
-# [Component Documentation](./components/docs/index.md)
+# [Component Documentation](./components/docs/components/index.md)
 
 ---
 

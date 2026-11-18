@@ -4,7 +4,7 @@ Zebra Design System components for Android.
 
 ## Setup
 
-> 🚧 **Note**: This has been verified with`compileSdkVersion 34`. Other sdk versions may require additional work.
+> 🚧 **Note**: This has been verified with `compileSdkVersion 34`. Other sdk versions may require additional work.
 
 ### 1. Setup credentials
 
@@ -25,7 +25,7 @@ These credentials should **_never_** be shared.
 
 ### 3. Add repository to settings file:
 
-Your username(core id) and password(generated token) need to be provided into a settings.gradle file. THe following examples show how this would be done assuming the credentials have been saved as per step 2 for both `settings.gradle` and `settings.gradle.kts`.
+Your username(core id) and password(generated token) need to be provided into a settings.gradle file. The following examples show how this would be done assuming the credentials have been saved as per step 2 for both `settings.gradle` and `settings.gradle.kts`.
 
 <details>
 <summary>
@@ -100,10 +100,12 @@ dependencies {
 
 <!-- x-release-please-start-version -->
 
+```kotlin
 dependencies {
-...
-implementation("com.zebra:zds:1.1.0")
+    ...
+    implementation("com.zebra:zds:1.1.0")
 }
+```
 
 <!-- x-release-please-end -->
 
@@ -146,10 +148,49 @@ Ensure you read the [docs](./components/docs/components/index.md), as some compo
 
 ---
 
+## Architecture
+
+See [docs/architecture.md](./docs/architecture.md) for how the library, demo app, icons and release pipeline fit together.
+
+## Repository layout
+
+| Path | Contents |
+| --- | --- |
+| `components/` | The `com.zebra:zds` Android library (Kotlin views in `src/main/java/com/zebra/zds`, themes, styles, fonts and icons in `src/main/res`) |
+| `components/docs/` | [Component](./components/docs/components/index.md) and [asset](./components/docs/assets/index.md) documentation |
+| `app/` | Demo app (`com.zebra.zdsDemo`) with one screen per component |
+| `docs/` | [Architecture](./docs/architecture.md) doc and diagram source |
+| `.github/workflows/` | release-please on `main` and Artifactory publishing on release |
+
+## Building this repository
+
+Open the project in Android Studio, or build from the command line with JDK 17 or newer:
+
+```sh
+sh ./gradlew assembleDebug        # builds the library AAR and the demo APK
+sh ./gradlew testDebugUnitTest    # unit tests (none exist yet)
+```
+
+`gradlew` is not committed as executable, so run it through `sh` (or `chmod +x gradlew` first).
+
+`components/build.gradle` reads four Gradle properties while it configures the publishing repository, so **every** build fails with `Could not get unknown property 'mavenUsername'` until they are set, even builds that do not publish. Add them to `~/.gradle/gradle.properties`:
+
+```properties
+mavenUsername=XXX
+mavenPassword=YYY
+# base Artifactory URL; the release workflow uses the ZDS_ANDROID_MAVEN secret
+zds-android-maven=https://example.invalid/
+publish=rel
+```
+
+Placeholder values are enough for `assembleDebug` and `testDebugUnitTest`. Real publishing (`gradle publish -P publish=rel`) is normally run by `.github/workflows/on-release.yml`.
+
+---
+
 ## [Component Documentation](./components/docs/components/index.md)
 
-## [Theme Documentation](./components/docs/theme/index.md)
+## [Asset Documentation](./components/docs/assets/index.md)
 
 ### [License](./LICENSE)
 
-### [Third party Licenses](./)
+### [Third party Licenses](./LICENSE-3RD-PARTY)
