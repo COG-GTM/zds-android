@@ -1,0 +1,57 @@
+// Architecture of zds-android as it is on main.
+// Render with ./render.sh (needs Graphviz: apt-get install graphviz fonts-dejavu).
+digraph zds_android {
+  graph [rankdir=TB, fontname="DejaVu Sans", fontsize=18, nodesep=0.35, ranksep=0.55,
+         labelloc=t, label="zds-android architecture (main)", pad=0.3, newrank=true];
+  node  [shape=box, style="rounded,filled", fillcolor=white, fontname="DejaVu Sans", fontsize=15, margin="0.18,0.08"];
+  edge  [fontname="DejaVu Sans", fontsize=13, color="#555555"];
+
+  subgraph cluster_repo {
+    label="COG-GTM/zds-android (Gradle build: settings.gradle includes :app and :components)";
+    style="rounded"; color="#1d4ed8"; fontsize=16;
+
+    subgraph cluster_components {
+      label=":components  (Android library, namespace com.zebra.zds, Kotlin)";
+      style="rounded,filled"; fillcolor="#eef4ff"; color="#3b82f6";
+      views   [label="19 view classes  com.zebra.zds.*\nMaterial subclasses: ZdsButton, ZdsIconButton, ZdsFAB,\nZdsExtendedFAB, ZdsSwitch, ZdsCheckBox, ZdsRadioButton,\nZdsToolbar, ZdsTabLayout/ZdsTabItem, ZdsSearchView\nCompound FrameLayouts: ZdsTextInput, ZdsSelectInput,\nZdsBanner, ZdsSystemBanner, Zds*ProgressIndicator\nHelpers: ZdsDialog.Builder, ZdsListItem.ZdsViewHolder"];
+      layouts [label="res/layout, layout-sw500dp\ninflated by compound views\n(text_input, select_input, banner,\ndialog_*, list_item, dropdown_item_*,\nnavigation_header/footer)"];
+      attrs   [label="res/values/attr.xml\n6 declare-styleables\n(TextInput, SelectInput, Banner,\nSystemBanner, progress indicators)"];
+      theme   [label="Theme.ZdsBase + Zds.* styles\nres/values (light) / values-night (dark)\ncolors, dimens, text styles,\nIBM Plex Sans font", fillcolor="#fff7e6"];
+      icons   [label="res/drawable\n712 icons x 2 variants\nic_<name>_round / ic_<name>_sharp\n(vector drawables, 1200 viewport)", fillcolor="#f0fdf4"];
+      views -> layouts [label="inflate"];
+      views -> attrs   [label="obtainStyledAttributes"];
+      layouts -> theme [label="?attr / @style"];
+    }
+
+    subgraph cluster_app {
+      label=":app  (demo app com.zebra.zdsDemo, Java)";
+      style="rounded,filled"; fillcolor="#f5f5f5"; color="#6b7280";
+      main  [label="MainActivity\nDrawerLayout + NavigationView,\nZdsToolbar, ZdsSystemBanner,\nday/night toggle"];
+      nav   [label="res/navigation/nav_graph.xml\n17 fragments (Buttons, TextInput,\nDialogs, Dropdown, Banner, ...)"];
+      main -> nav [label="Navigation component"];
+    }
+
+    docs [label="components/docs/\ncomponents/index.md, assets/index.md", shape=note, fillcolor="#fafafa"];
+  }
+
+  app_dep [label="implementation project(':components')", shape=plaintext, fontsize=13];
+  nav -> app_dep [arrowhead=none];
+  app_dep -> views;
+
+  subgraph cluster_release {
+    label="Release and distribution";
+    style="rounded,dashed"; color="#9333ea"; fontsize=16;
+    icons_bot [label="zeta-icons-bot\n(ZebraDevs/zeta-icons)\ndeps(automated) commits", fillcolor="#f0fdf4"];
+    on_main   [label="on-main.yml\nrelease-please: release PR bumps\nversion in README.md,\ncomponents/build.gradle,\nMainActivity.java, CHANGELOG"];
+    on_rel    [label="on-release.yml (release / manual)\ngradle publish -P publish=rel\nwith Artifactory secrets"];
+    maven     [label="Maven artifact com.zebra:zds:1.1.0 (AAR)\nArtifactory dmo-mvn-rel (internal)\nzebratech.jfrog.io zds-android (public)", shape=cylinder, fillcolor="#faf5ff"];
+    on_main -> on_rel [label="GitHub release published"];
+    on_rel -> maven [label="maven-publish"];
+  }
+
+  consumer [label="Consumer Android app\nsettings.gradle repo + credentials\nimplementation 'com.zebra:zds'\nandroid:theme=\"@style/Theme.ZdsBase\"", fillcolor="#fffbeb"];
+
+  icons_bot -> icons [label="push to main", style=dashed];
+  views -> on_main [style=invis];
+  maven -> consumer [label="Gradle dependency"];
+}
