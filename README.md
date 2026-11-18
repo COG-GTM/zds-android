@@ -171,7 +171,19 @@ sh ./gradlew assembleDebug        # builds the library AAR and the demo APK
 sh ./gradlew testDebugUnitTest    # unit tests (none exist yet)
 ```
 
-`gradlew` is not committed as executable, so run it through `sh` (or `chmod +x gradlew` first). Publishing (`gradle publish -P publish=rel`) needs `mavenUsername`, `mavenPassword` and `zds-android-maven` Gradle properties and is normally run by `.github/workflows/on-release.yml`.
+`gradlew` is not committed as executable, so run it through `sh` (or `chmod +x gradlew` first).
+
+`components/build.gradle` reads four Gradle properties while it configures the publishing repository, so **every** build fails with `Could not get unknown property 'mavenUsername'` until they are set, even builds that do not publish. Add them to `~/.gradle/gradle.properties`:
+
+```properties
+mavenUsername=XXX
+mavenPassword=YYY
+# base Artifactory URL; the release workflow uses the ZDS_ANDROID_MAVEN secret
+zds-android-maven=https://example.invalid/
+publish=rel
+```
+
+Placeholder values are enough for `assembleDebug` and `testDebugUnitTest`. Real publishing (`gradle publish -P publish=rel`) is normally run by `.github/workflows/on-release.yml`.
 
 ---
 
