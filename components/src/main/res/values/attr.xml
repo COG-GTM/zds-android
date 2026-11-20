@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="zdsChipStyle" format="reference" />
     <attr name="label" format="string|reference" />
     <attr name="indeterminate" format="boolean" />
     <attr name="max" format="integer" />

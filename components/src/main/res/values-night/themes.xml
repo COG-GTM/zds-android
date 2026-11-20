@@ -20,6 +20,7 @@
         <item name="windowActionModeOverlay">true</item>
         <item name="actionModeCloseDrawable">@drawable/ic_close_sharp</item>
         <item name="searchViewStyle">@style/Zds.SearchView</item>
+        <item name="zdsChipStyle">@style/Zds.Chip.Assist</item>
         <item name="textAppearanceLargePopupMenu">@style/Zds.Dropdown</item>
         <item name="textAppearanceSmallPopupMenu">@style/Zds.Dropdown</item>
         <item name="overlapAnchor">false</item>
