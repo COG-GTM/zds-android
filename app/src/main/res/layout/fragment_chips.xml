@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:textAppearance="?attr/textAppearanceBodySmall"
-            android:textColor="@color/zebra_hint" />
+            android:textColor="@color/zebra_grey_subtle_icon" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <!-- Filter (single select) -->
