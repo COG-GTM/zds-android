@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Zds.Chip.TextAppearance" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/ibm_plex_sans_medium</item>
+        <item name="android:fontFamily">@font/ibm_plex_sans_medium</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <!-- Assist: an action shortcut, optionally with a leading icon. -->
+    <style name="Zds.Chip.Assist" parent="Widget.Material3.Chip.Assist">
+        <item name="chipBackgroundColor">@color/zds_chip_background</item>
+        <item name="chipStrokeColor">@color/zds_chip_stroke</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipCornerRadius">4dp</item>
+        <item name="chipMinHeight">32dp</item>
+        <item name="android:textColor">@color/zds_chip_text</item>
+        <item name="android:textAppearance">@style/Zds.Chip.TextAppearance</item>
+        <item name="chipIconTint">@color/zds_chip_icon</item>
+        <item name="chipIconSize">18dp</item>
+        <item name="rippleColor">@color/zebra_blue_pressed_outline</item>
+        <item name="ensureMinTouchTargetSize">true</item>
+    </style>
+
+    <style name="Zds.Chip.Assist.Sharp" parent="Zds.Chip.Assist">
+        <item name="chipCornerRadius">0dp</item>
+    </style>
+
+    <!-- Filter: toggles on/off and shows a check mark while selected. -->
+    <style name="Zds.Chip.Filter" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">@color/zds_chip_background</item>
+        <item name="chipStrokeColor">@color/zds_chip_stroke</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipCornerRadius">4dp</item>
+        <item name="chipMinHeight">32dp</item>
+        <item name="android:textColor">@color/zds_chip_text</item>
+        <item name="android:textAppearance">@style/Zds.Chip.TextAppearance</item>
+        <item name="chipIconTint">@color/zds_chip_icon</item>
+        <item name="checkedIcon">@drawable/ic_check_mark_round</item>
+        <item name="checkedIconTint">@color/zebra_blue_enabled</item>
+        <item name="checkedIconVisible">true</item>
+        <item name="rippleColor">@color/zebra_blue_pressed_outline</item>
+        <item name="ensureMinTouchTargetSize">true</item>
+    </style>
+
+    <style name="Zds.Chip.Filter.Sharp" parent="Zds.Chip.Filter">
+        <item name="chipCornerRadius">0dp</item>
+        <item name="checkedIcon">@drawable/ic_check_mark_sharp</item>
+    </style>
+
+    <!-- Input: a user-entered value (tag, recipient) that can be removed. -->
+    <style name="Zds.Chip.Input" parent="Widget.Material3.Chip.Input">
+        <item name="chipBackgroundColor">@color/zds_chip_background</item>
+        <item name="chipStrokeColor">@color/zds_chip_stroke</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipCornerRadius">4dp</item>
+        <item name="chipMinHeight">32dp</item>
+        <item name="android:textColor">@color/zds_chip_text</item>
+        <item name="android:textAppearance">@style/Zds.Chip.TextAppearance</item>
+        <item name="chipIconTint">@color/zds_chip_icon</item>
+        <item name="closeIcon">@drawable/ic_close_round</item>
+        <item name="closeIconTint">@color/zds_chip_icon</item>
+        <item name="closeIconVisible">true</item>
+        <item name="android:checkable">false</item>
+        <item name="rippleColor">@color/zebra_blue_pressed_outline</item>
+        <item name="ensureMinTouchTargetSize">true</item>
+    </style>
+
+    <style name="Zds.Chip.Input.Sharp" parent="Zds.Chip.Input">
+        <item name="chipCornerRadius">0dp</item>
+        <item name="closeIcon">@drawable/ic_close_sharp</item>
+    </style>
+
+    <style name="Zds.ChipGroup" parent="Widget.Material3.ChipGroup">
+        <item name="chipSpacingHorizontal">8dp</item>
+        <item name="chipSpacingVertical">8dp</item>
+    </style>
+
+</resources>
